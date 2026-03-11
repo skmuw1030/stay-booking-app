@@ -1,2 +1,25 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<h2>新規登録</h2>
+
+<%= form_with model: @user do |f| %>
+  <p>
+    ユーザー名<span>*</span>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    メールアドレス<span>*</span>
+    <%= f.email_field :email %>
+  </p>
+  <p>
+    パスワード<span>*</span>
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    確認用パスワード<span>*</span>
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <p>
+    <%= f.submit "新しいアカウントを作成" %>
+  </p>
+  #ログインボタン
+<% end %>
+    
