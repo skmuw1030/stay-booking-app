@@ -32,6 +32,35 @@ class UsersController < ApplicationController
     end
   end
 
+  def account
+    @user = User.find(params[:id])
+  end
+
+  def edit_account
+    @user = User.find(params[:id])
+  end
+
+  def update_account
+    @user = User.find(params[:id])
+    if @user.update(account_params)
+      flash[:notice] = "アカウント情報を更新しました"
+      redirect_to account_user_path(@user)
+    else
+      render :edit_account, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def account_params
+    params.require(:user).permit(
+      :email,
+      :password,
+      :password_confirmation
+    )
+  end
+
+
 
   private
 

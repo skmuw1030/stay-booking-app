@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :users, only: [ :new, :create, :show, :edit, :update ]
+  resources :users, only: [ :new, :create, :show, :edit, :update ] do
+    member do
+      get :account
+      get :edit_account
+      patch :update_account
+    end
+  end
   resources :rooms
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
