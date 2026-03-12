@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  def rop
+  def top
   end
 
   def index

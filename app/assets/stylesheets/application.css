@@ -13,10 +13,3 @@
  *= require_tree .
  *= require_self
  */
-.dropdown {
-  display: none;
-}
-
-.menu:hover .dropdown {
-  display: block;
-}
