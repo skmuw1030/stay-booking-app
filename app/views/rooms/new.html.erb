@@ -1,0 +1,21 @@
+<h1>新しい施設を作成</h1>
+
+<%= form_with model: @room do |f| %>
+  <%= f.label :name, "施設名" %>
+  <%= f.text_field :name %> 
+
+  <%= f.label :description, "施設詳細" %>
+  <%= f.text_area :description %>
+
+  <%= f.label :price, "料金（/日）" %>
+  <%= f.number_field :price %>
+
+  <%= f.label :address, "住所" %>
+  <%= f.text_field :address %>
+
+  <%= f.label :image, "施設画像" %>
+  <%= f.file_field :image %>
+
+   <%= f.submit "作成" %>
+   <%= link_to "キャンセル", request.referrer || rooms_path %>
+<% end %>

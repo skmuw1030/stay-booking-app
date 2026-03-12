@@ -2,7 +2,40 @@ class RoomsController < ApplicationController
   def top
   end
 
+  def search
+    @rooms = Room.all
+    if params[:area].present?
+      @rooms = @rooms.where("address LIKE ?", "%#{params[:area]}%")
+    end
+  end
+
   def index
     @rooms = Room.all
+  end
+
+  def new
+    @room = Room.new
+  end
+
+  def create
+    @room = Room.new(room_params)
+    if @room.save
+      redirect_to room_path(@room), notice: "施設を作成しました"
+    else
+      flash.now[:alert] = "施設登録に失敗しました"
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def room_params
+    params.require(:room).permit(
+      :name,
+      :description,
+      :price,
+      :address,
+      :image
+    )
   end
 end
