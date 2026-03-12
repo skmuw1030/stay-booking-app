@@ -18,17 +18,41 @@
   </head>
 
   <body>
-    <header>
+     <header>
 
       <% if session[:user_id] %>
-        <p><%= User.find(session[:user_id]).name %></p>
-        <%= button_to "ログアウト", logout_path, method: :delete %>
+        
+        <% user = User.find(session[:user_id]) %>
+
+        <details>
+          <summary>
+          
+
+          <% if user.user_image.attached? %>
+            <%= image_tag user.user_image  %>
+          <% else %>
+            <%= image_tag "default_icon.png" %>
+          <% end %>
+          <%= user.name %>
+
+          </summary>
+
+          <div>
+            <%= link_to "プロフィール画面", user_path(user) %>
+            <%= link_to "アカウント画面",account_user_path(user) %>
+            <%= button_to "ログアウト", logout_path, method: :delete %>
+          </div>
+        </details>
+
+       
       <% else %>
         <%= link_to "ログイン", login_path %>
         <%= link_to "新規登録", new_user_path %>
        <% end %>
 
     </header>
+
+
 
     <%= yield %>
   </body>
