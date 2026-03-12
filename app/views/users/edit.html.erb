@@ -1,0 +1,23 @@
+<h2>プロフィール編集</h2>
+
+<%= form_with model: @user do |f| %>
+  <p>
+    <%= f.label :user_image, "アイコン画像" %>
+    <%= f.file_field :user_image %>
+  </p>
+  <p>
+    <%= f.label :name, "名前" %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :profile, "自己紹介" %>
+    <%= f.text_area :profile %>
+  </p>
+
+  <p>
+    <%= f.submit "更新" %>
+  </p>
+  <p>
+    <%= link_to "キャンセル", users_path %>
+  </p>
+<% end %>

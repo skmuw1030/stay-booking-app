@@ -14,12 +14,33 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:notice] = "スケジュールを更新しました"
+      redirect_to user_path(@user)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+
   private
 
   def user_params
     params.require(:user).permit(
       :name,
       :email,
+      :user_image,
+      :profile,
       :password,
       :password_confirmation
     )

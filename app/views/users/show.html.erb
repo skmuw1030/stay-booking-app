@@ -1,0 +1,15 @@
+<h2>プロフィール</h2>
+
+#サイドバー
+
+<%= link_to "編集", edit_user_path(@user) %>
+
+<p>
+  <% if @user.user_image.attached? %>
+    <%= image_tag @user.user_image %>
+  <% else %>
+    <%= image_tag "default_icon.png" %>
+  <% end %>
+</p>
+<p><%= @user.name %></p>
+<p><%= @user.profile %></p>
