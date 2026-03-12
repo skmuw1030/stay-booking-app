@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
   end
 
   def index
-    @rooms = Room.all
+    @rooms = current_user.rooms
   end
 
   def new
@@ -18,13 +18,17 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.new(room_params)
+    @room = current_user.rooms.build(room_params)
     if @room.save
       redirect_to room_path(@room), notice: "施設を作成しました"
     else
       flash.now[:alert] = "施設登録に失敗しました"
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @room = Room.find(params[:id])
   end
 
   private
