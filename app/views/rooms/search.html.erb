@@ -1,0 +1,23 @@
+<%= form_with url: rooms_search_path, method: :get, local: true do |f| %>
+  
+  <%= f.text_field :area, placeholder: "東京・大阪・札幌・京都 もしくは住所を入力"  %>
+
+  <%= f.text_field :keyword, placeholder: "キーワード検索" %>
+
+  <%= f.submit "検索" %>
+
+<% end %>
+
+<p><%= @rooms.count %>件見つかりました</p>
+
+<% @rooms.each do |room| %>
+  <% if room.image.attached? %>
+    <%= image_tag room.image %>
+  <% else %>
+    <%= image_tag "default_image.png"%>
+  <% end %>
+  <%= link_to room.name, room_path(room) %>
+  <%= room.address %>
+  <%= room.description %>
+  <p>¥<%= number_with_delimiter(room.price) %> / 日</p>
+<% end %>

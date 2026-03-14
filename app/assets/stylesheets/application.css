@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+.main {
+  background-image : url("top_image.jpg");
+  background-size: cover;
+  background-position: center;
+  height:100vh;
+
+
+}
