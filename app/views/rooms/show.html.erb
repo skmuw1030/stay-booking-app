@@ -7,8 +7,36 @@
 <%= @room.name %>
 
 <p>紹介文：<%= @room.description %></p>
-<p>料金：<%= number_to_currency(@room.price, unit: "¥", precision: 0) %>/日</p>
+<p>料金：¥<%= number_to_currency(@room.price, precision: 0) %>/日</p>
+<p>※表示料金は1人1泊の料金です。</p>
+<p>※支払い金額は宿泊日数・人数に応じて計算されます。</p>
 <p>住所：<%= @room.address %></p>
-<p>作成日：<%= @room.created_at.strftime("%Y/%m/%d") %></p>
+
+<%= form_with model: @reservation, url: confirm_reservations_path, data: { turbo: false } do |f| %>
+  <%= f.hidden_field :room_id, value: @room.id %>
+  <p>
+    <%= f.label :check_in, "チェックイン" %>
+    <%= f.date_field :check_in %>
+    <% if @reservation.errors[:check_in].any? %>
+      <%= @reservation.errors.full_messages_for(:check_in).first %>
+    <% end %>
+  </p>
+  <p>
+    <%= f.label :check_out, "チェックアウト" %>
+    <%= f.date_field :check_out %>
+    <% if @reservation.errors[:check_out].any? %>
+      <%= @reservation.errors.full_messages_for(:check_out).first %>
+    <% end %>
+  </p>
+  <p>
+    <%= f.label :number_of_people, "人数" %>
+    <%= f.number_field :number_of_people %>
+    <% if @reservation.errors[:number_of_people].any? %>
+      <%= @reservation.errors.full_messages_for(:number_of_people).first %>
+    <% end %>
+  </p>
+  <%= f.submit "予約する" %>
+<% end %>
+  
 
 <%= link_to "戻る", request.referer || rooms_path %>

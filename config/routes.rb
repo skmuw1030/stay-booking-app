@@ -7,11 +7,19 @@ Rails.application.routes.draw do
       patch :update_account
     end
   end
+
   resources :rooms do
     collection do
       get :search
     end
   end
+
+  resources :reservations do
+    collection do
+      post :confirm
+    end
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -29,5 +37,4 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root "rooms#top"
-  get "rooms/search", to: "rooms#search"
 end

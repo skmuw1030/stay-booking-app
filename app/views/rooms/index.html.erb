@@ -11,7 +11,7 @@
 
   <p><%= room.description %></p>
 
-  <p>料金：<%= number_to_currency(room.price, unit: "¥", precision: 0) %>/日</p>
+  <p>料金：¥<%= number_to_currency(room.price, precision: 0) %>/日</p>
 
   <p>作成日：<%= room.created_at.strftime("%Y/%m/%d") %></p>
 <% end %>

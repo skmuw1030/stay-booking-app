@@ -6,6 +6,10 @@
   <%= form_with url: search_rooms_path, method: :get do |f| %>
     <%= f.label :area, "エリア" %>
     <%= f.text_field :area, placeholder: "東京・大阪・札幌・京都 もしくは住所を入力"  %>
+
+    <%= f.label :keyword, "フリーワード" %>
+    <%= f.text_field :keyword, placeholder: "施設名・施設詳細を入力" %>
+
     <%= f.submit "検索" %>
   <% end %>
 </div>

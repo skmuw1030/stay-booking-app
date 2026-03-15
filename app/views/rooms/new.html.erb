@@ -1,18 +1,43 @@
 <h1>新しい施設を作成</h1>
 
 <%= form_with model: @room, local: true do |f| %>
-  
-  <%= f.label :name, "施設名" %>
-  <%= f.text_field :name %> 
+  <div>
+    <%= f.label :name, "施設名" %>
+    <%= f.text_field :name %> 
+    <% if @room.errors[:name].any? %>
+      <% @room.errors.full_messages_for(:name).each do |message| %>
+        <%= message %>
+      <% end %>
+    <% end %>
+  </div>
 
-  <%= f.label :description, "施設詳細" %>
-  <%= f.text_area :description %>
 
-  <%= f.label :price, "料金（/日）" %>
-  <%= f.number_field :price %>
-
-  <%= f.label :address, "住所" %>
-  <%= f.text_field :address %>
+  <div>
+    <%= f.label :description, "施設詳細" %>
+    <%= f.text_area :description %>
+    <% if @room.errors[:description].any? %>
+      <% @room.errors.full_messages_for(:description).each do |message| %>
+        <%= message %>
+      <% end %>
+    <% end %>
+  </div>
+  <div>
+    <%= f.label :price, "料金（/日）" %>
+    <%= f.text_field :price %>
+    <% if @room.errors[:price].any? %>
+      <%= @room.errors.full_messages_for(:price).first %>
+    <% end %>
+  </div>
+    
+  <div>
+    <%= f.label :address, "住所" %>
+    <%= f.text_field :address %>
+    <% if @room.errors[:address].any? %>
+      <% @room.errors.full_messages_for(:address).each do |message| %>
+        <%= message %>
+      <% end %>
+    <% end %>
+  </div>
 
   <%= f.label :image, "施設画像" %>
   <%= f.file_field :image %>

@@ -29,16 +29,24 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    @reservation = Reservation.new
   end
 
   def search
     @area = params[:area]
     @keyword = params[:keyword]
 
+    allowed_areas = [ "東京", "大阪", "京都", "札幌" ]
+
+    if params[:area].present? && !allowed_areas.any? { |a| params[:area].include?(a) }
+      @rooms = Room.none
+      return
+    end
+
     @rooms = Room.all
 
-    if @area.present?
-      @rooms = @rooms.where("address LIKE ?", "%#{@area}%")
+    if params[:area].present?
+      @rooms = @rooms.where("address LIKE ?", "%#{params[:area]}%")
     end
 
     if @keyword.present?

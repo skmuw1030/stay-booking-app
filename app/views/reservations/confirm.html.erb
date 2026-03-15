@@ -1,0 +1,19 @@
+<h2>予約内容の確認</h2>
+
+<p>施設名：<%= @room.name %></p>
+<p>チェックイン：<%= @reservation.check_in.strftime("%Y/%m/%d") %></p>
+<p>チェックアウト：<%= @reservation.check_out.strftime("%Y/%m/%d") %></p>
+<p>宿泊日数：<%= @stay_days %>日</p>
+<p>人数：<%= @reservation.number_of_people %>人</p>
+<p>合計金額：¥<%= number_with_delimiter(@total_price) %></p>
+<p>上記内容で正しければ「予約を確定」ボタンを押してください</p>
+
+<%= form_with model: @reservation do |f| %>
+  <%= f.hidden_field :check_in %>
+  <%= f.hidden_field :check_out %>
+  <%= f.hidden_field :number_of_people %>
+  <%= f.hidden_field :room_id %>
+
+  <%= f.submit "予約する" %>
+
+<% end %>

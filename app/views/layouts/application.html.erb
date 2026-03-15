@@ -42,7 +42,8 @@
             <%= link_to "アカウント画面",account_user_path(user) %>
             <%= button_to "ログアウト", logout_path, method: :delete %>
             <%= link_to "新規施設登録", new_room_path %>
-            <%= link_to "登録済みの施設一覧", rooms_path %>
+            <%= link_to "登録済み施設一覧", rooms_path %>
+            <%= link_to "予約済み一覧", reservations_path %>
           </div>
         </details>
 
