@@ -13,11 +13,17 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+
+header{
+  background:#243447;
+  color:white;
+}
+
 .main {
   background-image : url("top_image.jpg");
   background-size: cover;
   background-position: center;
-  height:100vh;
-
+  height: calc(100vh - 70px);
 
 }
