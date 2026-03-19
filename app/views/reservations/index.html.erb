@@ -1,46 +1,47 @@
 <div class="container my-4">
 
-<h2 class="mb-4 text-center">予約済み一覧</h2>
+  <h2 class="mb-4 text-center">予約済み一覧</h2>
 
-<div class="row g-4">
-<% @reservations.each do |reservation| %>
-   <div class="col-md-6 col-lg-4">
-   <div class="card h-100 shadow-sm">
-  <% if reservation.room.image.attached? %>
-    <%= image_tag reservation.room.image, class: "card-img-top", style: "height:200px; object-fit:cover;" %>
-  <% else %>
-    <%= image_tag "default_image.png", class: "card-img-top", style: "height:200px; object-fit:cover;" %>
-  <% end %>
+  <div class="row g-4">
+    <% @reservations.each do |reservation| %>
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <% if reservation.room.image.attached? %>
+            <%= image_tag reservation.room.image, class: "card-img-top", style: "height:200px; object-fit:cover;" %>
+          <% else %>
+            <%= image_tag "default_image.png", class: "card-img-top", style: "height:200px; object-fit:cover;" %>
+          <% end %>
 
-  <div class="card-body">
-    <div class="card-title fs-5 mb-2">
-      <%= reservation.room.name %>
-  </div>
+          <div class="card-body">
+            <div class="card-title fs-5 fw-bold mb-2">
+              <%= reservation.room.name %>
+            </div>
 
-  <p class="card-text text-truncate"><%= reservation.room.description %></p>
+            <p class="card-text text-truncate"><%= reservation.room.description %></p>
 
-  <p class="mb-1 fw-bold">
-    合計料金：¥<%= number_with_delimiter(reservation.total_price) %>
-  </p>
-  <div class="mb-2 small text-muted">
-  <p class="mb-1">
-    <span class="fw-bold">チェックイン：</span>
-    <%= reservation.check_in.strftime("%Y/%m/%d") %>
-  </p>
-  <p class="mb-1">
-    <span class="fw-bold">チェックアウト：</span>
-    <%= reservation.check_out.strftime("%Y/%m/%d") %>
-  </p>
-  <p class="mb-1">
-    <span class="fw-bold">人数：</span>
-    <%= reservation.number_of_people %>人
-  </p>
-  <p class="mb-0">
-    <span class="fw-bold">予約確定日時：</span>
-    <%= reservation.created_at.strftime("%Y/%m/%d %H:%M") %>
-  </p>
-</div>
-  </div>
+            <p class="mb-1 fw-bold">
+              合計料金：¥<%= number_with_delimiter(reservation.total_price) %>
+            </p>
+
+            <div class="mb-2 small text-muted">
+              <p class="mb-1">
+                <span class="fw-bold">チェックイン：</span>
+                <%= reservation.check_in.strftime("%Y/%m/%d") %>
+              </p>
+              <p class="mb-1">
+                <span class="fw-bold">チェックアウト：</span>
+                <%= reservation.check_out.strftime("%Y/%m/%d") %>
+              </p>
+              <p class="mb-1">
+                <span class="fw-bold">人数：</span>
+                <%= reservation.number_of_people %>人
+              </p>
+              <p class="mb-0">
+                <span class="fw-bold">予約確定日時：</span>
+                <%= reservation.created_at.strftime("%Y/%m/%d %H:%M") %>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     <% end %>
