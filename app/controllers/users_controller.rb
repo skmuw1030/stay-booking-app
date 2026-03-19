@@ -26,9 +26,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:notice] = "スケジュールを更新しました"
+      flash[:notice] = "更新しました"
       redirect_to user_path(@user)
     else
+      flash.now[:alert] ="更新に失敗しました"
       render :edit, status: :unprocessable_entity
     end
   end
@@ -61,8 +62,6 @@ class UsersController < ApplicationController
     )
   end
 
-
-
   private
 
   def user_params
@@ -70,9 +69,7 @@ class UsersController < ApplicationController
       :name,
       :email,
       :user_image,
-      :profile,
-      :password,
-      :password_confirmation
+      :profile
     )
   end
 end
