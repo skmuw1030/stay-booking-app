@@ -1,19 +1,50 @@
-<h2>予約内容の確認</h2>
+<div class="container my-4" style="max-width: 600px;">
 
-<p>施設名：<%= @room.name %></p>
-<p>チェックイン：<%= @reservation.check_in.strftime("%Y/%m/%d") %></p>
-<p>チェックアウト：<%= @reservation.check_out.strftime("%Y/%m/%d") %></p>
-<p>宿泊日数：<%= @stay_days %>日</p>
-<p>人数：<%= @reservation.number_of_people %>人</p>
-<p>合計金額：¥<%= number_with_delimiter(@total_price) %></p>
-<p>上記内容で正しければ「予約を確定」ボタンを押してください</p>
+  <h2 class="mb-4 text-center">予約内容の確認</h2>
 
-<%= form_with model: @reservation do |f| %>
-  <%= f.hidden_field :check_in %>
-  <%= f.hidden_field :check_out %>
-  <%= f.hidden_field :number_of_people %>
-  <%= f.hidden_field :room_id %>
+  <div class="card shadow-sm p-4">
+    <div class="mb-3 d-flex justify-content-between">
+      <span class="fw-bold">施設名</span>
+      <%= @room.name %>
+    </div>
+    
+    <div class="mb-3 d-flex justify-content-between">
+      <span class="fw-bold">チェックイン</span>
+      <%= @reservation.check_in.strftime("%Y/%m/%d") %>
+    </div>
 
-  <%= f.submit "予約する" %>
+    <div class="mb-3 d-flex justify-content-between">
+      <span class="fw-bold">チェックアウト</span>
+      <%= @reservation.check_out.strftime("%Y/%m/%d") %>
+    </div>
+     
+    <div class="mb-3 d-flex justify-content-between">
+      <span class="fw-bold">宿泊日数</span>
+      <%= @stay_days %>泊
+    </div>
 
-<% end %>
+    <div class="mb-3 d-flex justify-content-between">
+      <span class="fw-bold">人数</span>
+      <%= @reservation.number_of_people %>人
+    </div>
+
+    <div class="mb-3 d-flex justify-content-between">
+      <span class="fw-bold">合計金額</span>
+      <%= number_with_delimiter(@total_price) %>円
+    </div>
+
+    <p>上記内容で正しければ「予約を確定」ボタンを押してください</p>
+
+    <%= form_with model: @reservation do |f| %>
+      <%= f.hidden_field :check_in %>
+      <%= f.hidden_field :check_out %>
+      <%= f.hidden_field :number_of_people %>
+      <%= f.hidden_field :room_id %>
+
+      <%= f.submit "予約を確定", class: "btn btn-success py-2 w-100" %>
+
+    <% end %>
+
+  </div>
+  
+</div>

@@ -14,23 +14,22 @@ class Reservation < ApplicationRecord
   validates :check_out, presence: true
   validates :number_of_people, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, message: "は1人以上の数字で入力してください" }
 
-  validate :verify_date
+  validate :check_in_today_or_future
 
   private
 
-  def verify_date
+  def check_in_today_or_future
     return if check_in.blank?
     if check_in < Date.today
-      errors.add(:check_in, "は本日以降の日付を選択してください")
+      errors.add(:check_in, "はチェックイン日より後の日付にしてください")
     end
   end
 
-
-  validate :date_check
+  validate :check_out_after_check_in
 
   private
 
-  def date_check
+  def check_out_after_check_in
     return if check_in.blank? || check_out.blank?
     if check_out < check_in
       errors.add(:check_out, "はチェックイン日より後の日付にしてください")

@@ -11,9 +11,20 @@ ja:
   activerecord:
     attributes:
       reservation:
-      check_in: チェックイン日
-      check_out: チェックアウト日
-      number_of_people: 人数
+        check_in: チェックイン日
+        check_out: チェックアウト日
+        number_of_people: 人数
+
+    errors:
+      models:
+        reservation:
+          attributes:
+            check_in:
+              future_or_today: "は本日以降の日付を選択してください"
+            check_out:
+              after_check_in: "はチェックイン日より後の日付にしてください"
+            number_of_people:
+              greater_than_or_equal_to: "は1人以上の数字で入力してください"
 
 ja:
   activerecord:
