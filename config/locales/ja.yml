@@ -14,3 +14,12 @@ ja:
       check_in: チェックイン日
       check_out: チェックアウト日
       number_of_people: 人数
+
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: ユーザー名
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
