@@ -2,13 +2,6 @@ class RoomsController < ApplicationController
   def top
   end
 
-  def search
-    @rooms = Room.all
-    if params[:area].present?
-      @rooms = @rooms.where("address LIKE ?", "%#{params[:area]}%")
-    end
-  end
-
   def index
     @rooms = current_user.rooms
   end
