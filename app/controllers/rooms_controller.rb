@@ -48,9 +48,13 @@ class RoomsController < ApplicationController
   end
 
   def destroy
-    @room = current_user.rooms.find(params[:id])
-    @room.destroy
-    redirect_to rooms_path, notice: "施設を削除しました"
+    @room = current_user.rooms.find_by(id: params[:id])
+    if @room 
+      @room.destroy
+      redirect_to rooms_path, notice: "施設を削除しました"
+    else
+      redirect_to rooms_path, alert: "削除できませんでした"
+    end
   end
 
 
