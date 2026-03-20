@@ -1,0 +1,84 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap";
+
+header{
+  background:#243447;
+  color:white;
+}
+
+.main {
+  background-image : url("kyoto.jpg");
+  background-size: cover;
+  background-position: center;
+  height: calc(100vh - 70px);
+
+}
+
+h1 { 
+  font-weight:700px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  line-height: 1.2;
+  font-size: 4rem; 
+
+}
+
+.search-box{
+  max-width: 420px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  margin-top:300px;
+}
+
+.search-btn {
+  background-color: #FF6B6B; 
+  color: white;
+  border: none;
+  font-weight: 600;
+}
+
+.search-btn:hover {
+  background-color: #FF4C4C;
+}
+
+.profile-card {
+  max-width: 700px;  
+}
+
+.profile-button {
+  max-width: 700px;  
+  margin: 0 auto;    
+}
+
+.account-card {
+  max-width: 600px;  
+}
+
+.account-button {
+  max-width: 600px;  
+  margin: 0 auto;  
+}
+
+.account-edit{
+  max-width: 600px;  
+  margin: 0 auto;  
+}
+
+.account-edit-card {
+  max-width: 600px;  
+}
+

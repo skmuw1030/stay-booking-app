@@ -1,4 +1,25 @@
 Rails.application.routes.draw do
+  get "sessions/new"
+  resources :users, only: [ :new, :create, :show, :edit, :update ] do
+    member do
+      get :account
+      get :edit_account
+      patch :update_account
+    end
+  end
+
+  resources :rooms do
+    collection do
+      get :search
+    end
+  end
+
+  resources :reservations do
+    collection do
+      post :confirm
+    end
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -9,6 +30,11 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
+  get "login", to: "sessions#new"
+  post "login", to: "sessions#create"
+  delete "logout", to: "sessions#destroy"
+
   # Defines the root path route ("/")
   # root "posts#index"
+  root "rooms#top"
 end

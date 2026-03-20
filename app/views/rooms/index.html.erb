@@ -1,0 +1,62 @@
+<h2  class="mt-4 mb-5 text-center">登録済み施設一覧</h2>
+
+<div class="container">
+  <div class="row g-4">
+
+    <% @rooms.each do |room| %>
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <% if room.image.attached? %>
+            <%= image_tag room.image, class: "card-img-top", style: "height:200px; object-fit:cover;" %>
+          <% else %>
+            <%= image_tag "default_image.png", class: "card-img-top", style: "height:200px; object-fit:cover;" %>
+          <% end %>
+
+          <div class="card-body">
+            <div class="card-title fs-5">
+              <%= link_to room.name, room_path(room), class: "text-decoration-none text-primary fw-bold" %>
+            </div>
+            <p class="card-text text-truncate"><%= room.description %></p>
+            <p class="mb-1 fw-bold">
+              料金：<%= number_to_currency(room.price, precision: 0) %> /日
+            </p>
+            <p class="text-muted small mb-0">
+              作成日：<%= room.created_at.strftime("%Y/%m/%d") %>
+            </p>
+            <div class="mt-auto text-end">
+              <%= link_to "#",data: { bs_toggle: "modal", bs_target: "#deleteModal-#{room.id}"}, class: "btn btn-sm btn-danger" do %>
+                削除
+              <% end %>
+            </div>
+          </div>  
+        </div>
+      </div>
+      
+      <div class="modal fade" id="deleteModal-<%= room.id %>" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-danger">削除確認</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+              <% if room.image.attached? %>
+                <%= image_tag room.image, style: "width:100%; max-height:150px; object-fit:cover;", class: "mb-2" %>
+              <% end %>
+              <h5><%= room.name %></h5>
+              <p>料金：<%= number_to_currency(room.price, precision: 0) %> /日</p>
+              <p>本当にこの施設を削除しますか？</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+              <%= button_to "削除する", room_path(room), method: :delete, class: "btn btn-danger" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+
+  </div>
+</div>
+

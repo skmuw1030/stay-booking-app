@@ -1,0 +1,23 @@
+<div class="main d-flex align-items-center justify-content-center text-center">
+
+  <div class="container text-center">
+
+    <h1 class="text-white fw-bold mb-5">Potepan Shareでまだ体験したことのない旅をしよう</h1>
+
+    <%= form_with url: search_rooms_path, method: :get, class: "search-box mx-auto p-4 rounded shadow" do |f| %>
+
+      <div class="mb-3 text-start">
+        <%= f.label :area, "エリア",class: "form-label text-white fw-bold" %>
+        <%= f.text_field :area,  class: "form-control",placeholder: "東京・大阪・札幌・京都 もしくは住所を入力"  %>
+      </div>
+
+      <div class="mb-3 text-start">
+        <%= f.label :keyword, "フリーワード", class: "form-label text-white fw-bold " %>
+        <%= f.text_field :keyword,  class: "form-control",placeholder: "施設名・施設詳細を入力" %>
+      </div>
+
+        <%= f.submit "検索", class: "search-btn py-2 rounded btn-lg w-100" %>
+        
+    <% end %>
+  </div>
+</div>
